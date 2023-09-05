@@ -19,7 +19,7 @@ from mpl_toolkits.basemap import Basemap, cm
 
 __author__ = "Claus Haslauer (mail@planetwater.org)"
 __version__ = "$Revision: 0.1 $"
-__date__ = datetime.datetime(2014,02,01)
+__date__ = datetime.datetime(2014,2,1)
 __copyright__ = "Copyright (c) 2014 Claus Haslauer"
 __license__ = "Python"
 
@@ -67,7 +67,7 @@ def main():
                              , int(str(cur_time)[1:])
                              )
 
-    print "t_zero: ", t_zero
+    print("t_zero: ", t_zero)
 
     # -----------------------
     # make the plots
@@ -96,7 +96,7 @@ def main():
     plt.tight_layout()
     plt.savefig(date_string+'.png', dpi=150)
 
-    print "Done!"
+    print("Done!")
 
 def get_grb_data(grb_sets, talk_to_me=True):
 
@@ -113,7 +113,7 @@ def get_grb_data(grb_sets, talk_to_me=True):
     grbs.seek(0)
     for cur_grb in grbs:
         temp = []
-        print cur_grb
+        print(cur_grb)
 
         cur_lats, cur_lons = cur_grb.latlons()
         cur_data = cur_grb['values']
@@ -124,15 +124,15 @@ def get_grb_data(grb_sets, talk_to_me=True):
         data_lst.append(temp)
 
         if talk_to_me == True:
-            print cur_lats.shape, cur_lats.min(), cur_lats.max(), cur_lons.shape, cur_lons.min(), cur_lons.max()
-            print cur_data.shape, cur_data.min(), cur_data.max()
-            print "grid definition: ", cur_grb['gridDefinition']
-            print cur_grb['yearOfCentury'], cur_grb['month'], cur_grb['day'], cur_grb['hour']
-            print "units: ", cur_grb['units']
-            print "data date: ", cur_data_date
-            print "data time: ", cur_data_time
-            print "validity date: ", cur_grb['validityDate']
-            print '---'
+            print(cur_lats.shape, cur_lats.min(), cur_lats.max(), cur_lons.shape, cur_lons.min(), cur_lons.max())
+            print(cur_data.shape, cur_data.min(), cur_data.max())
+            print("grid definition: ", cur_grb['gridDefinition'])
+            print(cur_grb['yearOfCentury'], cur_grb['month'], cur_grb['day'], cur_grb['hour'])
+            print("units: ", cur_grb['units'])
+            print("data date: ", cur_data_date)
+            print("data time: ", cur_data_time)
+            print("validity date: ", cur_grb['validityDate'])
+            print('---')
 
     return data_lst
 
@@ -157,7 +157,7 @@ def make_wind_map(ax, ax_ctr, grb_1, grb_2, jump, t_zero, use_knots=True):
         u = u * 1.944
         v = v * 1.944
     wind_v = np.sqrt(u**2. + v**2.)
-    print "min: %d,    max: %d" % (wind_v.min(), wind_v.max())
+    print("min: %d,    max: %d" % (wind_v.min(), wind_v.max()))
 
     cur_lats = grb_1[1]
     cur_lons = grb_2[2]
